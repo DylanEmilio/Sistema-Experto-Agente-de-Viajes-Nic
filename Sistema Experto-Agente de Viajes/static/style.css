@@ -1,0 +1,185 @@
+/* Importar tipografía moderna de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+    --color-fondo: #f4f7f6;
+    --color-primario: #059669; /* Verde esmeralda fresco */
+    --color-primario-hover: #047857;
+    --color-texto: #1f2937;
+    --blanco: #ffffff;
+    --borde: #e5e7eb;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 40px 20px;
+}
+
+.contenedor {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: var(--color-primario);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.paneles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Tarjetas */
+.tarjeta {
+    background-color: var(--blanco);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--borde);
+}
+
+h3 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--color-fondo);
+    padding-bottom: 10px;
+}
+
+/* Estilos de Formulario */
+label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+select, input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+
+button {
+    margin-top: 25px;
+    width: 100%;
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* Estilos de Resultados */
+.texto-vacio {
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 50px;
+    font-style: italic;
+}
+
+.alerta-exito {
+    background-color: #ecfdf5;
+    border: 1px solid #10b981;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px; /* Separación si hubiera otros elementos */
+}
+
+.alerta-exito h2 {
+    color: var(--color-primario);
+    margin-top: 0;
+}
+
+.costo-box {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.costo-box h4 {
+    margin: 5px 0 0 0;
+    font-size: 1.3rem;
+}
+
+/* =========================================
+   ESTILOS DEL CARRUSEL (NUEVO)
+   ========================================= */
+.carrusel-contenedor {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.carrusel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
+}
+.carrusel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.controles-carrusel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+.btn-carrusel {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 0; /* Override del button global */
+}
+.btn-carrusel:hover:not(:disabled) {
+    background-color: var(--color-primario-hover);
+}
+.btn-carrusel:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+}
+.indicador-carrusel {
+    font-weight: 600;
+    color: #4b5563;
+}

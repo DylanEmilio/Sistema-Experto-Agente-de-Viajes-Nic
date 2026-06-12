@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agente de Viajes - Nicaragua</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Ajuste rápido para dividir el formulario internamente */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px; /* AUMENTADO: de 20px a 30px para separar ambas columnas */
+        }
+        .seccion-form {
+            background: #fafafa;
+            padding: 25px; /* AUMENTADO: de 15px a 25px para que el contenido no pegue con los bordes punteados */
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
+        
+        /* NUEVO: Estilos para la botonera */
+        .contenedor-botones {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .btn-primario {
+            flex: 2; /* Ocupa más espacio para destacar */
+        }
+        .btn-limpiar {
+            flex: 1;
+            background-color: #ef4444; /* Rojo suave */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-limpiar:hover {
+            background-color: #dc2626; /* Rojo más oscuro al pasar el mouse */
+        }
+
+        /* Separación extra para las múltiples tarjetas de resultados */
+        .tarjeta-resultado-item {
+            margin-bottom: 25px;
+            border-left: 5px solid #3b82f6; /* Línea decorativa azul */
+        }
+        .tarjeta-resultado-item:first-of-type {
+            border-left-color: #10b981; /* La mejor opción (#1) tendrá línea verde */
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <header>
+        <h1>Descubre tu Nicaragua Ideal</h1>
+        <p>Selecciona tus preferencias y nuestro sistema experto construirá tu viaje.</p>
+    </header>
+
+    <div class="paneles">
+        <form method="POST" class="tarjeta form-panel">
+            
+            <div class="form-grid">
+                <div class="seccion-form">
+                    <h3>Perfil Personal</h3>
+                    
+                    <label>Motivación Principal:</label>
+                    <select name="motivacion">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Relajación">Relajación</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Cultura">Cultura general</option>
+                        <option value="Historia">Historia / Política</option>
+                        <option value="Fiesta/Social">Fiesta / Vida Nocturna</option>
+                        <option value="Naturaleza">Contacto con Naturaleza</option>
+                    </select>
+
+                    <label>Interacción Social Deseada:</label>
+                    <select name="social">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Baja">Baja (Mucha privacidad)</option>
+                        <option value="Media">Media (Equilibrio)</option>
+                        <option value="Alta">Alta (Conocer gente nueva)</option>
+                        <option value="Muy Alta">Muy Alta (Multitudes/Eventos)</option>
+                    </select>
+
+                    <label>Nivel de Actividad Física:</label>
+                    <select name="actividad">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Baja">Baja (Descanso total)</option>
+                        <option value="Media">Media (Caminatas ligeras)</option>
+                        <option value="Alta">Alta (Senderismo/Deportes)</option>
+                    </select>
+                </div>
+
+                <div class="seccion-form">
+                    <h3>Detalles del Viaje</h3>
+
+                    <label>Tipo de Alojamiento:</label>
+                    <select name="alojamiento">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Hotel Boutique">Hotel Boutique</option>
+                        <option value="Hostal">Hostal / Compartido</option>
+                        <option value="Hotel Colonial">Hotel Colonial</option>
+                        <option value="Cabaña">Cabaña en Montaña</option>
+                        <option value="Eco-lodge">Eco-lodge</option>
+                    </select>
+
+                    <label>Clima Preferido:</label>
+                    <select name="clima">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Cálido">Cálido Estándar</option>
+                        <option value="Cálido Húmedo">Cálido Húmedo (Caribe)</option>
+                        <option value="Cálido Seco">Cálido Seco (Playa Pacífico)</option>
+                        <option value="Fresco">Fresco de Montaña</option>
+                        <option value="Muy Cálido">Muy Cálido (Occidente)</option>
+                    </select>
+
+                    <label>Cultura a Explorar:</label>
+                    <select name="cultura">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Afro-caribeña">Afro-caribeña</option>
+                        <option value="Hispánica">Hispánica / Colonial</option>
+                        <option value="Indígena">Indígena / Precolombina</option>
+                        <option value="Moderna">Moderna / Surf</option>
+                        <option value="Cafetalera">Cafetalera / Agrícola</option>
+                        <option value="Revolucionaria">Revolucionaria / Poética</option>
+                    </select>
+
+                    <label>Presupuesto Asignado:</label>
+                    <select name="presupuesto">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Bajo">Bajo (Económico/Mochilero)</option>
+                        <option value="Medio">Medio (Confortable)</option>
+                        <option value="Alto">Alto (Lujo/Exclusivo)</option>
+                    </select>
+
+                    <label>Cantidad de Presupuesto (USD):</label>
+                    <input type="number" name="cantidad_presupuesto" value="" min="1" step="0.01" placeholder="Ej: 500">
+
+                    <label>Duración del viaje (Días):</label>
+                    <input type="number" name="dias" value="" min="1" required>
+                </div>
+            </div>
+
+           <div class="contenedor-botones">
+                <button type="submit" class="btn-primario">Ejecutar Motor de Inferencia ✨</button>
+                <button type="button" class="btn-limpiar" onclick="limpiarFormulario()">Limpiar 🗑️</button>
+            </div>
+        </form>
+
+        <div class="tarjeta resultado-panel">
+            <h3>Dictamen del Sistema Experto</h3>
+            
+            {% if ofertas %}
+                {% for oferta in ofertas %}
+                    <div class="alerta-exito tarjeta-resultado-item">
+                        <h2>#{{ loop.index }} - 📍 {{ oferta.destino.nombre }}</h2>
+                        <p><strong>Descripción:</strong> {{ oferta.destino.desc }}</p>
+                        <hr>
+                        <p>🌡️ <strong>Clima esperado:</strong> {{ oferta.destino.clima }}</p>
+                        <p>🏛️ <strong>Cultura local:</strong> {{ oferta.destino.cultura }}</p>
+                        <p>🛏️ <strong>Hospedaje sugerido:</strong> {{ oferta.destino.alojamiento }}</p>
+                        <p>🎯 <strong>Porcentaje de afinidad:</strong> {{ oferta.porcentaje_match }}%</p>
+                        
+                        <div class="costo-box">
+                            <p>Cotización para {{ oferta.dias }} días</p>
+                            <h4>Costo Base Diario: ${{ oferta.destino.costo }} USD</h4>
+                            <h4>Total Estimado: ${{ oferta.total_estimado }} USD</h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="texto-vacio">El motor está a la espera de parámetros. Completa el formulario de la izquierda para procesar tu viaje ideal.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+function limpiarFormulario() {
+    // Limpiar todos los campos select y input del formulario
+    const form = document.querySelector('form');
+    if (form) {
+        form.reset();
+    }
+    
+    // Limpiar el panel de dictámenes visualmente
+    const resultadoPanel = document.querySelector('.resultado-panel');
+    if (resultadoPanel) {
+        resultadoPanel.innerHTML = `
+            <h3>Dictamen del Sistema Experto</h3>
+            <p class="texto-vacio">El motor está a la espera de parámetros. Completa el formulario de la izquierda para procesar tu viaje ideal.</p>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
